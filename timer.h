@@ -12,15 +12,15 @@ struct Timer
     std::chrono::duration<float> duration;
     std::string operation;
 
-    Timer() : operation("Timer"), start(std::chrono::high_resolution_clock::now()) {}
+    Timer() : operation("Timer"), start(std::chrono::steady_clock::now()) {}
 
     Timer(std::string operation)
-        : operation(operation), start(std::chrono::high_resolution_clock::now()) {}
+        : operation(operation), start(std::chrono::steady_clock::now()) {}
 
     // Display results at the end of the instance's lifetime, in milliseconds.
     ~Timer()
     {
-        end = std::chrono::high_resolution_clock::now();
+        end = std::chrono::steady_clock::now();
         duration = end - start;
 
         float ms = duration.count() * 1000.0f;
